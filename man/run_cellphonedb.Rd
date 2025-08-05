@@ -6,7 +6,7 @@
 \usage{
 run_cellphonedb(
   obj,
-  condition = NULL,
+  group = NULL,
   toKeep = NULL,
   cpdbPath,
   metaPath,
@@ -17,9 +17,9 @@ run_cellphonedb(
 \arguments{
 \item{obj}{Seurat object}
 
-\item{condition}{Metadata column to filter by; this is for seurat objects containing cells from different disease status or time frames etc. (default = NULL)}
+\item{group}{Metadata column to filter by; this is for seurat objects containing cells from different disease status or time frames etc. (default = NULL)}
 
-\item{toKeep}{Value within the metadata column of interest to retain for the analysis.}
+\item{toKeep}{Value within the metadata column of interest to retain for the analysis. This field is mandatory if group is not NULL. (default = NULL)}
 
 \item{cpdbPath}{Path to 'cellphonedb.zip' file}
 

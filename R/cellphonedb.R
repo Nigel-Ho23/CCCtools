@@ -1,8 +1,8 @@
 #' Run CellPhoneDB version 5 in R
 #'
 #' @param obj Seurat object
-#' @param condition Metadata column to filter by; this is for seurat objects containing cells from different disease status or time frames etc. (default = NULL)
-#' @param toKeep Value within the metadata column of interest to retain for the analysis.
+#' @param group Metadata column to filter by; this is for seurat objects containing cells from different disease status or time frames etc. (default = NULL)
+#' @param toKeep Value within the metadata column of interest to retain for the analysis. This field is mandatory if group is not NULL. (default = NULL)
 #' @param cpdbPath Path to 'cellphonedb.zip' file
 #' @param metaPath Path to metadata file (.tsv file with two columns - (1) barcode and (2) cell type)
 #' @param adataPath Path to AnnData object created internally - must end with .h5ad
@@ -11,12 +11,12 @@
 #' @returns Folder path to CellPhoneDB analysis outputs
 #' @export
 #'
-run_cellphonedb <- function(obj, condition = NULL, toKeep = NULL, cpdbPath, metaPath, adataPath, outPath) {
+run_cellphonedb <- function(obj, group = NULL, toKeep = NULL, cpdbPath, metaPath, adataPath, outPath) {
   ad <- import("anndata")
   cpdb.analysis <- import("cellphonedb.src.core.methods.cpdb_statistical_analysis_method")
 
-  if (!is.null(condition)) {
-    obj <- subset(obj, obj@meta.data[[condition]] == toKeep)
+  if (!is.null(group)) {
+    obj <- subset(obj, obj@meta.data[[group]] == toKeep)
   }
 
   meta <- obj@meta.data %>%

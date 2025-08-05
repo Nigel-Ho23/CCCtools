@@ -22,12 +22,13 @@ The goal of CCCtools is to ...
 
 ## Installation
 
-You can install the development version of CCCtools like so:
+You can install the development version of CCCtools:
 
 ```{r, eval=FALSE}
 if (!requireNamespace("pacman", quietly = TRUE)) install.packages("pacman")
 pacman::p_load_gh("xxx/CCCtools")
 ```
+
 
 ## Example
 
@@ -40,6 +41,8 @@ hello("Nigel Ho")
 ```
 
 What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
+
+
 
 ```{r cars}
 summary(cars)

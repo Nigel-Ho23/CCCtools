@@ -4,7 +4,15 @@
 \alias{run_cellphonedb}
 \title{Run CellPhoneDB version 5 in R}
 \usage{
-run_cellphonedb(obj, ...)
+run_cellphonedb(
+  obj,
+  condition = NULL,
+  toKeep = NULL,
+  cpdbPath,
+  metaPath,
+  adataPath,
+  outPath
+)
 }
 \arguments{
 \item{obj}{Seurat object}

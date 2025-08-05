@@ -16,7 +16,8 @@ run_cellphonedb <- function(obj, group = NULL, toKeep = NULL, cpdbPath, metaPath
   cpdb.analysis <- import("cellphonedb.src.core.methods.cpdb_statistical_analysis_method")
 
   if (!is.null(group)) {
-    obj <- subset(obj, obj@meta.data[[group]] == toKeep)
+    to.keep <- rownames(obj@meta.data)[obj@meta.data[[group]] == toKeep]
+    obj <- subset(obj, cells = to.keep)
   }
 
   meta <- obj@meta.data %>%

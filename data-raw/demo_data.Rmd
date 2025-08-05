@@ -12,7 +12,7 @@ knitr::opts_chunk$set(echo = TRUE)
 # Download the raw data
 
 We will use the same dataset used in the CellChat tutorial. 
-The data is described at [here]https://doi.org/10.6084/m9.figshare.13520015.v1).
+The data is described [here]https://doi.org/10.6084/m9.figshare.13520015.v1).
 
 
 ```{r}
@@ -52,5 +52,21 @@ data_humanSkin$data[1:5, 1:5]
 
 # Convert to Seurat object
 
-As most single-cell data is analyzed as a Seurat object, we built our functions (i.e. run_cellchat, run_cellphonedb) to use Seurat data as input.
+As most single-cell data is analyzed as a Seurat object, we built our functions (i.e. run_cellchat, run_cellphonedb) to use Seurat data as input. We use the `CreateSeuratObject()` function by the `Seurat` package to convert our data to a Seurat object. In most cases, this step is skipped for most users who already have a working Seurat object.
+
+```{r}
+seurat_obj <- CreateSeuratObject(counts = data_humanSkin$data, meta.data = data_humanSkin$meta)
+
+seurat_obj %>% names()
+
+seurat_obj@assays$RNA %>% rownames() %>% head()
+
+seurat_obj@assays$RNA %>% colnames() %>% head()
+
+seurat_obj@assays$RNA@layers$counts %>% head()
+
+seurat_obj@meta.data %>% head()
+
+saveRDS(seurat_obj, "../data/tutorial_data.rds")
+```
 

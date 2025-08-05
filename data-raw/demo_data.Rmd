@@ -67,6 +67,10 @@ seurat_obj@assays$RNA@layers$counts %>% head()
 
 seurat_obj@meta.data %>% head()
 
+seurat_obj[["RNA"]]$data <- seurat_obj[["RNA"]]$counts # set data matrix to data layer to simulate real-world data
+
+seurat_obj[["RNA"]]$counts <-  NULL
+
 saveRDS(seurat_obj, "../data/tutorial_data.rds")
 ```
 

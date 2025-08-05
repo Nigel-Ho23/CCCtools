@@ -15,7 +15,7 @@ You can install the development version of CCCtools:
 
 ``` r
 if (!requireNamespace("pacman", quietly = TRUE)) install.packages("pacman")
-pacman::p_load_gh("Nigel-Ho23/CCCtools/")
+pacman::p_load_gh("Nigel-Ho23/CCCtools")
 ```
 
 ## Example
@@ -52,3 +52,4 @@ You can also embed plots, for example:
 
 In that case, don’t forget to commit and push the resulting figure
 files, so they display on GitHub and CRAN.
+

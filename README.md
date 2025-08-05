@@ -11,11 +11,11 @@ The goal of CCCtools is to …
 
 ## Installation
 
-You can install the development version of CCCtools like so:
+You can install the development version of CCCtools:
 
 ``` r
 if (!requireNamespace("pacman", quietly = TRUE)) install.packages("pacman")
-pacman::p_load_gh("xxx/CCCtools")
+pacman::p_load_gh("Nigel-Ho23/CCCtools/")
 ```
 
 ## Example

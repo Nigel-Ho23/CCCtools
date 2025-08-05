@@ -1,19 +1,21 @@
 #' Run CellPhoneDB version 5 in R
 #'
 #' @param obj Seurat object
-#' @param ...
+#' @param condition Metadata column to filter by; this is for seurat objects containing cells from different disease status or time frames etc. (default = NULL)
+#' @param toKeep Value within the metadata column of interest to retain for the analysis.
+#' @param cpdbPath Path to 'cellphonedb.zip' file
+#' @param metaPath Path to metadata file (.tsv file with two columns - (1) barcode and (2) cell type)
+#' @param adataPath Path to AnnData object created internally - must end with .h5ad
+#' @param outPath Path to store all output .txt files from CellPhoneDB analysis
 #'
-#' @returns Folder path
+#' @returns Folder path to CellPhoneDB analysis outputs
 #' @export
 #'
 run_cellphonedb <- function(obj, condition = NULL, toKeep = NULL, cpdbPath, metaPath, adataPath, outPath) {
   ad <- import("anndata")
   cpdb.analysis <- import("cellphonedb.src.core.methods.cpdb_statistical_analysis_method")
 
-  if (is.null(condition)) {
-    obj <- obj
-  }
-  else {
+  if (!is.null(condition)) {
     obj <- subset(obj, obj@meta.data[[condition]] == toKeep)
   }
 
@@ -42,7 +44,7 @@ run_cellphonedb <- function(obj, condition = NULL, toKeep = NULL, cpdbPath, meta
 
   dir.create(outPath, recursive = TRUE)
 
-  cpdb_results <- cpdb.analysis$call(
+  cpdb.analysis$call(
     cpdb_file_path = cpdbPath,
     meta_file_path = metaPath,
     counts_file_path = adataPath,
@@ -52,6 +54,6 @@ run_cellphonedb <- function(obj, condition = NULL, toKeep = NULL, cpdbPath, meta
     output_path = outPath
   )
 
-  print("done")
+  message("CellPhoneDB analysis completed successfully.")
 
 }

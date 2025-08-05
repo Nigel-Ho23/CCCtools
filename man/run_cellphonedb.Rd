@@ -17,10 +17,20 @@ run_cellphonedb(
 \arguments{
 \item{obj}{Seurat object}
 
-\item{...}{}
+\item{condition}{Metadata column to filter by; this is for seurat objects containing cells from different disease status or time frames etc. (default = NULL)}
+
+\item{toKeep}{Value within the metadata column of interest to retain for the analysis.}
+
+\item{cpdbPath}{Path to 'cellphonedb.zip' file}
+
+\item{metaPath}{Path to metadata file (.tsv file with two columns - (1) barcode and (2) cell type)}
+
+\item{adataPath}{Path to AnnData object created internally - must end with .h5ad}
+
+\item{outPath}{Path to store all output .txt files from CellPhoneDB analysis}
 }
 \value{
-Folder path
+Folder path to CellPhoneDB analysis outputs
 }
 \description{
 Run CellPhoneDB version 5 in R

@@ -16,3 +16,5 @@ Encoding: UTF-8
 LazyData: true
 Depends: 
     R (>= 4.0.1)
+URL: https://github.com/Nigel-Ho23/CCCtools
+BugReports: https://github.com/Nigel-Ho23/CCCtools/issues

@@ -81,3 +81,9 @@ cpdb_results <- cpdb.analysis$call(
   # microenvs_file_path = microenvs_file_path,
   output_path = out_path
 )
+
+"NL"
+"../data/cellphonedb.zip"
+"../data/NL_meta.tsv"
+"../data/NL.h5ad"
+"results/cpdb/NL"

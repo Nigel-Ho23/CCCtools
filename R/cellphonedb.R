@@ -11,18 +11,16 @@ run_cellphonedb <- function(obj, condition = NULL, toKeep = NULL, cpdbPath, meta
   cpdb.analysis <- import("cellphonedb.src.core.methods.cpdb_statistical_analysis_method")
 
   if (is.null(condition)) {
-    meta <- obj@meta.data %>%
+    obj <- obj
+  }
+  else {
+    obj <- subset(obj, obj@meta.data[[condition]] == toKeep)
+  }
+
+  meta <- obj@meta.data %>%
     rownames_to_column(var = "barcode") %>%
     select(barcode, labels) %>%
     write_delim(file = metaPath, delim = "\t") # save file for later use
-    }
-  else {
-    obj <- subset(obj, condition == toKeep)
-    meta <- obj@meta.data %>%
-      rownames_to_column(var = "barcode") %>%
-      select(barcode, labels) %>%
-      write_delim(file = metaPath, delim = "\t") # save file for later use
-  }
 
   normcounts <- obj[["RNA"]]$data
 

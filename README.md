@@ -4,10 +4,10 @@
 # CCCtools
 
 <!-- badges: start -->
-
 <!-- badges: end -->
 
-The goal of CCCtools is to …
+The goal of CCCtools is to provide functions to run CellChat v2 and
+CellPhoneDB v5 as well as compare their outputs.
 
 ## Installation
 
@@ -18,9 +18,10 @@ if (!requireNamespace("pacman", quietly = TRUE)) install.packages("pacman")
 pacman::p_load_gh("Nigel-Ho23/CCCtools")
 ```
 
-## Example
+## Example data
 
-This is a basic example which shows you how to solve a common problem:
+`NL` is a Seurat object created from the example dataset in the the
+CellChat tutorial. See the `create_NL.R` script in data-raw folder.
 
 ``` r
 library(CCCtools)

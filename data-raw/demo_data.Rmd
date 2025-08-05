@@ -1,11 +1,12 @@
 ---
-title: "Create demo data"
-output: html_document
+title: "Demo data for CCCtools package"
+output: github_document
 date: "2025-08-05"
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+pacman::p_load(tidyverse, janitor, Seurat)
 ```
 
 
@@ -15,11 +16,26 @@ We will use the same dataset used in the CellChat tutorial.
 The data is described [here]https://doi.org/10.6084/m9.figshare.13520015.v1).
 
 
-```{r}
+```{r, eval=FALSE}
 pacman::p_load(tidyverse, janitor, Seurat)
 
 load( url("https://figshare.com/ndownloader/files/25950872"), verbose = TRUE )
+# Loading objects:
+#   data_humanSkin
+```
+```{r, echo=FALSE, message=FALSE}
+fn <- "~/data_humanSkin.rda"
 
+if( !file.exists(fn) ){
+  download.file("https://figshare.com/ndownloader/files/25950872", 
+                destfile = fn, mode = "wb")
+}
+
+load(fn)
+rm(fn)
+```
+
+```{r}
 names(data_humanSkin)
 ```
 
@@ -70,7 +86,18 @@ Let us subset to just the non-lesional samples:
 
 ```{r}
 seu.NL <- subset(seu, condition == "NL")
+seu.NL
+```
+Finally, we write this into the data directory:
 
+```{r, eval = FALSE}
 usethis::use_data(seu.NL)
+# ✔ Setting active project to "C:/Users/aramasamy/Documents/CCCtools".
+# ✔ Saving "seu.NL" to "data/seu.NL.rda".
+# ☐ Document your data (see <https://r-pkgs.org/data.html>).
 ```
 
+```{r, echo = FALSE}
+if( !file.exists("../data/seu.NL.rda") )
+  usethis::use_data(seu.NL)
+```

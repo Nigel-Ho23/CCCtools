@@ -32,14 +32,16 @@ pacman::p_load_gh("Nigel-Ho23/CCCtools")
 
 ## Example data
 
-`NL` is a Seurat object created from the example dataset in the the CellChat tutorial. See the `create_NL.R` script in data-raw folder.
+`seu.NL` is the Seurat object contained 2,233 cells from non-lesional human skin from four different patients. This dataset was created from the data used originally in CellChat tutorial. See this [script for how the data was generated](data-raw/demo_data.md).
 
 
 
 ```{r example}
 library(CCCtools)
 
-hello("Nigel Ho")
+data(seu.NL)
+
+seu.NL
 ```
 
 What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:

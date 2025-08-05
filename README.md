@@ -20,14 +20,30 @@ pacman::p_load_gh("Nigel-Ho23/CCCtools")
 
 ## Example data
 
-`NL` is a Seurat object created from the example dataset in the the
-CellChat tutorial. See the `create_NL.R` script in data-raw folder.
+`seu.NL` is the Seurat object contained 2,233 cells from non-lesional
+human skin from four different patients. This dataset was created from
+the data used originally in CellChat tutorial. See this [script for how
+the data was generated](data-raw/demo_data.md).
 
 ``` r
 library(CCCtools)
 
-hello("Nigel Ho")
-#> [1] "Hello Nigel Ho"
+data(seu.NL)
+
+seu.NL
+#> Loading required package: SeuratObject
+#> Warning: package 'SeuratObject' was built under R version 4.4.3
+#> Loading required package: sp
+#> Warning: package 'sp' was built under R version 4.4.2
+#> 
+#> Attaching package: 'SeuratObject'
+#> The following objects are masked from 'package:base':
+#> 
+#>     intersect, t
+#> An object of class Seurat 
+#> 10353 features across 2233 samples within 1 assay 
+#> Active assay: RNA (10353 features, 0 variable features)
+#>  1 layer present: data
 ```
 
 What is special about using `README.Rmd` instead of just `README.md`?

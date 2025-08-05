@@ -1,0 +1,56 @@
+---
+title: "Create demo data"
+output: html_document
+date: "2025-08-05"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+# Download the raw data
+
+We will use the same dataset used in the CellChat tutorial. 
+The data is described at [here]https://doi.org/10.6084/m9.figshare.13520015.v1).
+
+
+```{r}
+pacman::p_load(tidyverse, janitor, Seurat)
+setwd("data-raw/")
+
+load( url("https://figshare.com/ndownloader/files/25950872") )
+
+names(data_humanSkin)
+```
+
+Exploring the metadata shows that there are 4 patients with non-lesional and lesional samples each.
+
+```{r}
+dim(data_humanSkin$meta)
+
+head(data_humanSkin$meta)
+
+data_humanSkin$meta %>% 
+  count(patient.id, condition) %>% 
+  arrange(condition, desc(n))
+
+data_humanSkin$meta %>% 
+  tabyl(labels, condition)
+```
+
+The expression data is of normalized counts and consists of 17,328 genes and 7,563 cells.
+
+```{r}
+dim(data_humanSkin$data)
+
+data_humanSkin$data %>% class()
+
+data_humanSkin$data[1:5, 1:5]
+```
+
+
+# Convert to Seurat object
+
+As most single-cell data is analyzed as a Seurat object, we built our functions (i.e. run_cellchat, run_cellphonedb) to use Seurat data as input.
+

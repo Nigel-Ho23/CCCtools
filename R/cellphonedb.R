@@ -3,6 +3,7 @@
 #' @param obj Seurat object with normalized counts in the data layer of the RNA assay
 #' @param group Metadata column to filter by; this is for seurat objects containing cells from different disease status or time frames etc. (default = NULL)
 #' @param toKeep Value within the metadata column of interest to retain for the analysis. This field is mandatory if group is not NULL. (default = NULL)
+#' @param labels Metadata column name of cell type annotations
 #' @param cpdbPath Path to 'cellphonedb.zip' file
 #' @param metaPath Path to metadata file created internally - must end with .tsv
 #' @param adataPath Path to AnnData object created internally - must end with .h5ad
@@ -17,6 +18,7 @@
 #'   obj = seurat_object,
 #'   group  = "condition",           # if seurat object contains multiple conditions to filter, input column name in metadata
 #'   toKeep = "treated",             # mandatory if group is not NULL; input condition to be filtered
+#'   labels = "celltype",
 #'   cpdbPath  = "data/cellphonedb.zip",
 #'   metaPath  = "data/meta.tsv",    # internally created metadata file will be stored here
 #'   adataPath = "data/data.h5ad",   # internally created AnnData object will be stored here
@@ -24,7 +26,7 @@
 #' )
 #' }
 
-run_cellphonedb <- function(obj, group = NULL, toKeep = NULL, cpdbPath, metaPath, adataPath, outPath) {
+run_cellphonedb <- function(obj, group = NULL, toKeep = NULL, labels, cpdbPath, metaPath, adataPath, outPath) {
   ad <- import("anndata")
   cpdb.analysis <- import("cellphonedb.src.core.methods.cpdb_statistical_analysis_method")
 
@@ -41,7 +43,7 @@ run_cellphonedb <- function(obj, group = NULL, toKeep = NULL, cpdbPath, metaPath
 
   meta <- obj@meta.data %>%
     rownames_to_column(var = "barcode") %>%
-    select(barcode, labels) %>%
+    select(barcode, !!rlang::sym(labels)) %>%
     write_delim(file = metaPath, delim = "\t")
 
   normcounts <- obj[["RNA"]]$data

@@ -22,13 +22,101 @@ communication tool, CellChat, that has the same feature.
 
 # Setting up required environment
 
-## CellPhoneDB conda environment in R
-
-As mentioned in the [Introduction](#introduction), CellPhoneDB is a
+As mentioned in the [**Introduction**](#introduction), CellPhoneDB is a
 Python package and currently, does not have an R equivalent. Here, we
 provide a wrapper function `run_cellphonedb()` for running CellPhoneDB
 completely within R. To do this, we require the use of the `reticulate`
 package (a dependency in CCCtools) and provide users with the
-`cpdb.yaml` file for creating a CellPhoneDB python environment in R. The
-`cpdb.yaml` file can be found [here](../data/) and is stored in the
-`CCCtools` package ready for use.
+`cpdb.yaml` file for creating the CellPhoneDB python environment in R.
+The `cpdb.yaml` file is **required** and available for download
+[**here**](../data/). In addition to the `cpdb.yaml` file, the
+CellPhoneDB interaction database `cellphonedb.zip` is also required for
+running CellPhoneDB analysis; you may find the database in the same
+directory.
+
+## CellPhoneDB conda environment in R
+
+### R set-up
+
+``` r
+pacman::p_load_gh("nigelhojinker/CCCtools")
+setwd(this.path::here())
+rm(list = ls())
+```
+
+### Set up conda & python via reticulate
+
+For users **without** a prior conda installation, you may run the line
+below for installation of miniconda:
+
+``` r
+if(!file.exists(conda_binary())) install_miniconda()
+```
+
+For users **with** conda installed, we recommend running the line below
+to ensure that the correct conda is selected and used by `reticulate`.
+Of course, users should input the path to conda in their respective
+local machines.
+
+``` r
+options(reticulate.conda_binary = "C:/Users/hojkn/AppData/Local/miniforge3/condabin/conda.bat")
+```
+
+Once installation and conda selection is complete, we can confirm this
+by running:
+
+``` r
+conda_binary()
+```
+
+    ## [1] "C:/Users/hojkn/AppData/Local/miniforge3/condabin/conda.bat"
+
+Next, we have to create the CellPhoneDB conda environment with the
+necessary Python modules for running the analysis. This is done **only
+once:**
+
+``` r
+conda_create(envname = "cpdb", environment = "/path/to/cpdb.yaml")
+```
+
+Once the cpdb environment has been created, we have to select its python
+interpreter:
+
+``` r
+python_binary <- conda_list() %>%
+  filter(name == "cpdb") %>%
+  pull(python) %>%
+  normalizePath(winslash = "/")
+
+python_binary
+```
+
+    ## [1] "C:/Users/hojkn/AppData/Local/miniforge3/envs/cpdb/python.exe"
+
+``` r
+use_python(python_binary, required = TRUE)
+```
+
+## Running CellPhoneDB in R
+
+Now, we are ready to run CellPhoneDB in R.
+
+We provide the `run_cellphonedb()` function that can give us output from
+CellPhoneDB analysis (method 2). This function takes in a Seurat object
+(with )
+
+``` r
+# Load your Seurat object
+data(seu.NL)
+
+seu.NL
+
+seu.NL@meta.data %>% head()
+
+run_cellphonedb(obj = seu.NL,
+                labels = "labels",
+                cpdbPath  = "../data/cellphonedb.zip",
+                metaPath  = "../data/NL_meta.tsv",
+                adataPath = "../data/NL.h5ad",
+                outPath   = "results/test/NL")
+```

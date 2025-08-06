@@ -26,7 +26,7 @@ You can install the development version of CCCtools:
 
 ```{r, eval=FALSE}
 if (!requireNamespace("pacman", quietly = TRUE)) install.packages("pacman")
-pacman::p_load_gh("Nigel-Ho23/CCCtools")
+pacman::p_load_gh("nigelhojinker/CCCtools")
 ```
 
 

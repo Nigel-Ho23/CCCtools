@@ -15,7 +15,7 @@ run_cellphonedb(
 )
 }
 \arguments{
-\item{obj}{Seurat object}
+\item{obj}{Seurat object with normalized counts in the data layer of the RNA assay}
 
 \item{group}{Metadata column to filter by; this is for seurat objects containing cells from different disease status or time frames etc. (default = NULL)}
 
@@ -23,7 +23,7 @@ run_cellphonedb(
 
 \item{cpdbPath}{Path to 'cellphonedb.zip' file}
 
-\item{metaPath}{Path to metadata file (.tsv file with two columns - (1) barcode and (2) cell type)}
+\item{metaPath}{Path to metadata file created internally - must end with .tsv}
 
 \item{adataPath}{Path to AnnData object created internally - must end with .h5ad}
 
@@ -34,4 +34,17 @@ Folder path to CellPhoneDB analysis outputs
 }
 \description{
 Run CellPhoneDB version 5 in R
+}
+\examples{
+\dontrun{
+run_cellphonedb(
+  obj = seurat_object,
+  group  = "condition",           # if seurat object contains multiple conditions to filter, input column name in metadata
+  toKeep = "treated",             # mandatory if group is not NULL; input condition to be filtered
+  cpdbPath  = "data/cellphonedb.zip",
+  metaPath  = "data/meta.tsv",    # internally created metadata file will be stored here
+  adataPath = "data/data.h5ad",   # internally created AnnData object will be stored here
+  outPath   = "output/results"
+)
+}
 }

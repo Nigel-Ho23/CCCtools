@@ -75,7 +75,7 @@ seu <- CreateSeuratObject(
   )
 
 # Set data matrix to data layer correctly
-seu[["RNA"]]$data <- seu[["RNA"]]$counts 
+seu[["RNA"]]$data   <- seu[["RNA"]]$counts 
 seu[["RNA"]]$counts <-  NULL
 
 # Cell composition after QC

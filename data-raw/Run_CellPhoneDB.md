@@ -112,7 +112,7 @@ parameters in `run_cellphonedb()`:
   itself will be created internally, there is no need to make the file
   path before running this function
 - adataPath /path/to/normcounts.h5ad; function creates an AnnData object
-  internally and save it to the user defined path. Similar to metaPath,
+  internally and save it to the user-defined path. Similar to metaPath,
   users do not have to create the file path before running the function
 - outPath: /path/to/outputs; five .txt files will be generated in every
   run and saved in this directory (creation prior to run is not needed)
@@ -122,13 +122,51 @@ parameters in `run_cellphonedb()`:
 data(seu.NL)
 
 seu.NL
+```
 
+    ## An object of class Seurat 
+    ## 10353 features across 2233 samples within 1 assay 
+    ## Active assay: RNA (10353 features, 0 variable features)
+    ##  1 layer present: data
+
+``` r
 seu.NL@meta.data %>% head()
+```
 
+    ##                     patient.id      labels
+    ## S3_ATGAGGGAGTCTTGCA   Patient3   FBN1+ FIB
+    ## S3_GTACGTACAAATTGCC   Patient3   FBN1+ FIB
+    ## S3_CTCGTCAGTGTTGAGG   Patient3 Inflam. FIB
+    ## S3_ATTCTACGTAATCGTC   Patient3   FBN1+ FIB
+    ## S3_CTGCCTATCAATCACG   Patient3   FBN1+ FIB
+    ## S3_TAGTGGTAGGATGCGT   Patient3   FBN1+ FIB
+
+``` r
 run_cellphonedb(obj = seu.NL,
                 labels = "labels",
                 cpdbPath  = "../data/cellphonedb.zip",
-                metaPath  = "../data/NL_meta.tsv",
-                adataPath = "../data/NL.h5ad",
-                outPath   = "results/test/NL")
+                metaPath  = "../data/cpdb/NL_meta.tsv",
+                adataPath = "../data/cpdb/NL.h5ad",
+                outPath   = "../data/cpdb/NL")
+
+# Reading user files...
+# The following user files were loaded successfully:
+# ../data/cpdb/NL.h5ad
+# ../data/cpdb/NL_meta.tsv
+# [ ][CORE][06/08/25-17:07:51][INFO] [Cluster Statistical Analysis] Threshold:0.1 Iterations:1000 Debug-seed:-1 Threads:4 Precision:3
+# [ ][CORE][06/08/25-17:07:57][INFO] Running Real Analysis
+# [ ][CORE][06/08/25-17:07:57][INFO] Running Statistical Analysis
+# 100%|██████████| 1000/1000 [00:27<00:00, 35.87it/s][ ][CORE][06/08/25-17:08:25][INFO] Building Pvalues result
+# [ ][CORE][06/08/25-17:08:25][INFO] Building results
+# Saved deconvoluted to ../data/cpdb/NL\statistical_analysis_deconvoluted_08_06_2025_170825.txt
+# Saved deconvoluted_percents to ../data/cpdb/NL\statistical_analysis_deconvoluted_percents_08_06_2025_170825.txt
+# Saved means to ../data/cpdb/NL\statistical_analysis_means_08_06_2025_170825.txt
+# 
+# Warning in py_to_r.pandas.core.frame.DataFrame(<environment>) :
+#   index contains duplicated values: row names not set
+# Warning in py_to_r.pandas.core.frame.DataFrame(<environment>) :
+#   index contains duplicated values: row names not set
+# Saved pvalues to ../data/cpdb/NL\statistical_analysis_pvalues_08_06_2025_170825.txt
+# Saved significant_means to ../data/cpdb/NL\statistical_analysis_significant_means_08_06_2025_170825.txt
+# CellPhoneDB analysis completed successfully.
 ```

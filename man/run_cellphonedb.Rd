@@ -8,6 +8,7 @@ run_cellphonedb(
   obj,
   group = NULL,
   toKeep = NULL,
+  labels,
   cpdbPath,
   metaPath,
   adataPath,
@@ -20,6 +21,8 @@ run_cellphonedb(
 \item{group}{Metadata column to filter by; this is for seurat objects containing cells from different disease status or time frames etc. (default = NULL)}
 
 \item{toKeep}{Value within the metadata column of interest to retain for the analysis. This field is mandatory if group is not NULL. (default = NULL)}
+
+\item{labels}{Metadata column name of cell type annotations}
 
 \item{cpdbPath}{Path to 'cellphonedb.zip' file}
 
@@ -41,6 +44,7 @@ run_cellphonedb(
   obj = seurat_object,
   group  = "condition",           # if seurat object contains multiple conditions to filter, input column name in metadata
   toKeep = "treated",             # mandatory if group is not NULL; input condition to be filtered
+  labels = "celltype",
   cpdbPath  = "data/cellphonedb.zip",
   metaPath  = "data/meta.tsv",    # internally created metadata file will be stored here
   adataPath = "data/data.h5ad",   # internally created AnnData object will be stored here

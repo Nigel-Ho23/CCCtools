@@ -33,6 +33,12 @@ run_cellphonedb <- function(obj, group = NULL, toKeep = NULL, cpdbPath, metaPath
     obj <- subset(obj, cells = to.keep)
   }
 
+  for (path in c(metaPath, adataPath)) {
+    if (!dir.exists(dirname(path))) {
+      dir.create(dirname(path), recursive = TRUE)
+    }
+  }
+
   meta <- obj@meta.data %>%
     rownames_to_column(var = "barcode") %>%
     select(barcode, labels) %>%
@@ -58,7 +64,7 @@ run_cellphonedb <- function(obj, group = NULL, toKeep = NULL, cpdbPath, metaPath
 
   if (!dir.exists(outPath)) {
     dir.create(outPath, recursive = TRUE)
-    }
+  }
 
   cpdb.analysis$call(
     cpdb_file_path = cpdbPath,

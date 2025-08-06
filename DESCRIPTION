@@ -1,4 +1,4 @@
-Package: scpeakeR
+Package: CCCtools
 Type: Package
 Title: Single-cell cell-cell communication tool integrating both CellChat and CellPhoneDB in R 
 Version: 0.1.1

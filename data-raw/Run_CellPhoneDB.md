@@ -96,7 +96,7 @@ python_binary
 use_python(python_binary, required = TRUE)
 ```
 
-## Running CellPhoneDB in R
+# Running CellPhoneDB in R
 
 Now, we are ready to run CellPhoneDB in R.
 

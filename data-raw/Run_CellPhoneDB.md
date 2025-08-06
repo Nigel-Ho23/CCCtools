@@ -22,17 +22,16 @@ communication tool, CellChat, that has the same feature.
 
 # Setting up required environment
 
-As mentioned in the [**Introduction**](#introduction), CellPhoneDB is a
-Python package and currently, does not have an R equivalent. Here, we
-provide a wrapper function `run_cellphonedb()` for running CellPhoneDB
-completely within R. To do this, we require the use of the `reticulate`
-package (a dependency in CCCtools) and provide users with the
-`cpdb.yaml` file for creating the CellPhoneDB python environment in R.
-The `cpdb.yaml` file is **required** and available for download
-[**here**](../data/). In addition to the `cpdb.yaml` file, the
-CellPhoneDB interaction database `cellphonedb.zip` is also required for
-running CellPhoneDB analysis; you may find the database in the same
-directory.
+As mentioned in the **Introduction**, CellPhoneDB is a Python package
+and currently, does not have an R equivalent. Here, we provide a wrapper
+function `run_cellphonedb()` for running CellPhoneDB completely within
+R. To do this, we require the use of the `reticulate` package (a
+dependency in CCCtools) and provide users with the `cpdb.yaml` file for
+creating the CellPhoneDB python environment in R. In addition to the
+`cpdb.yaml` file, the CellPhoneDB interaction database `cellphonedb.zip`
+is also **required** for running CellPhoneDB analysis; you may find the
+environment file and database in the same directory for download
+[**here**](../data/).
 
 ## CellPhoneDB conda environment in R
 
@@ -103,7 +102,20 @@ Now, we are ready to run CellPhoneDB in R.
 
 We provide the `run_cellphonedb()` function that can give us output from
 CellPhoneDB analysis (method 2). This function takes in a Seurat object
-(with )
+with normalized counts in the data layer of the RNA assay, and annotated
+cell type labels in the meta.data. Here is a breakdown of the other
+parameters in `run_cellphonedb()`:
+
+- labels: meta.data column name for the annotated cell type labels
+- cpdbPath: /path/to/cellphonedb.zip
+- metaPath: /path/to/meta.tsv; path to the tsv file and the tsv file
+  itself will be created internally, there is no need to make the file
+  path before running this function
+- adataPath /path/to/normcounts.h5ad; function creates an AnnData object
+  internally and save it to the user defined path. Similar to metaPath,
+  users do not have to create the file path before running the function
+- outPath: /path/to/outputs; five .txt files will be generated in every
+  run and saved in this directory (creation prior to run is not needed)
 
 ``` r
 # Load your Seurat object

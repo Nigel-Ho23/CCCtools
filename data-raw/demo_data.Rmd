@@ -24,11 +24,11 @@ load( url("https://figshare.com/ndownloader/files/25950872"), verbose = TRUE )
 #   data_humanSkin
 ```
 ```{r, echo=FALSE, message=FALSE}
-fn <- "~/data_humanSkin.rda"
+fn <- "../data/data_humanSkin.rda"
 
 if( !file.exists(fn) ){
-  download.file("https://figshare.com/ndownloader/files/25950872", 
-                destfile = fn, mode = "wb")
+  curl::curl_download("https://figshare.com/ndownloader/files/25950872", 
+                    destfile = fn, quiet = TRUE)
 }
 
 load(fn)

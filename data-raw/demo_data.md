@@ -5,7 +5,7 @@ Demo data for CCCtools package
 # Download the raw data
 
 We will use the same dataset used in the CellChat tutorial. The data is
-described \[here\]<https://doi.org/10.6084/m9.figshare.13520015.v1>).
+described [here](https://doi.org/10.6084/m9.figshare.13520015.v1).
 
 ``` r
 pacman::p_load(tidyverse, janitor, Seurat)
@@ -115,7 +115,7 @@ seu <- CreateSeuratObject(
   )
 
 # Set data matrix to data layer correctly
-seu[["RNA"]]$data <- seu[["RNA"]]$counts 
+seu[["RNA"]]$data   <- seu[["RNA"]]$counts 
 seu[["RNA"]]$counts <-  NULL
 ```
 
@@ -144,6 +144,9 @@ Let us subset to just the non-lesional samples:
 
 ``` r
 seu.NL <- subset(seu, condition == "NL")
+
+seu.NL@meta.data <- seu.NL@meta.data %>% select(patient.id, labels)
+
 seu.NL
 ```
 

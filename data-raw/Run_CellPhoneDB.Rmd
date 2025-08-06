@@ -96,29 +96,29 @@ seu.NL@meta.data %>% head()
 run_cellphonedb(obj = seu.NL,
                 labels = "labels",
                 cpdbPath  = "../data/cellphonedb.zip",
-                metaPath  = "../data/NL_meta.tsv",
-                adataPath = "../data/NL.h5ad",
-                outPath   = "results/test/NL")
+                metaPath  = "../data/cpdb/NL_meta.tsv",
+                adataPath = "../data/cpdb/NL.h5ad",
+                outPath   = "../data/cpdb/NL")
 
 # Reading user files...
 # The following user files were loaded successfully:
-# ../data/NL.h5ad
-# ../data/NL_meta.tsv
-# [ ][CORE][06/08/25-17:03:17][INFO] [Cluster Statistical Analysis] Threshold:0.1 Iterations:1000 Debug-seed:-1 Threads:4 Precision:3
-# [ ][CORE][06/08/25-17:03:17][INFO] Running Real Analysis
-# [ ][CORE][06/08/25-17:03:17][INFO] Running Statistical Analysis
-# 100%|██████████| 1000/1000 [00:31<00:00, 31.63it/s][ ][CORE][06/08/25-17:03:49][INFO] Building Pvalues result
-# [ ][CORE][06/08/25-17:03:49][INFO] Building results
-# Warning in py_to_r.pandas.core.frame.DataFrame(<environment>) :
-#   index contains duplicated values: row names not set
-# Saved deconvoluted to results/test/NL\statistical_analysis_deconvoluted_08_06_2025_170349.txt
-# Saved deconvoluted_percents to results/test/NL\statistical_analysis_deconvoluted_percents_08_06_2025_170349.txt
-# Saved means to results/test/NL\statistical_analysis_means_08_06_2025_170349.txt
-# Saved pvalues to results/test/NL\statistical_analysis_pvalues_08_06_2025_170349.txt
-# Saved significant_means to results/test/NL\statistical_analysis_significant_means_08_06_2025_170349.txt
+# ../data/cpdb/NL.h5ad
+# ../data/cpdb/NL_meta.tsv
+# [ ][CORE][06/08/25-17:07:51][INFO] [Cluster Statistical Analysis] Threshold:0.1 Iterations:1000 Debug-seed:-1 Threads:4 Precision:3
+# [ ][CORE][06/08/25-17:07:57][INFO] Running Real Analysis
+# [ ][CORE][06/08/25-17:07:57][INFO] Running Statistical Analysis
+# 100%|██████████| 1000/1000 [00:27<00:00, 35.87it/s][ ][CORE][06/08/25-17:08:25][INFO] Building Pvalues result
+# [ ][CORE][06/08/25-17:08:25][INFO] Building results
+# Saved deconvoluted to ../data/cpdb/NL\statistical_analysis_deconvoluted_08_06_2025_170825.txt
+# Saved deconvoluted_percents to ../data/cpdb/NL\statistical_analysis_deconvoluted_percents_08_06_2025_170825.txt
+# Saved means to ../data/cpdb/NL\statistical_analysis_means_08_06_2025_170825.txt
 # 
 # Warning in py_to_r.pandas.core.frame.DataFrame(<environment>) :
 #   index contains duplicated values: row names not set
+# Warning in py_to_r.pandas.core.frame.DataFrame(<environment>) :
+#   index contains duplicated values: row names not set
+# Saved pvalues to ../data/cpdb/NL\statistical_analysis_pvalues_08_06_2025_170825.txt
+# Saved significant_means to ../data/cpdb/NL\statistical_analysis_significant_means_08_06_2025_170825.txt
 # CellPhoneDB analysis completed successfully.
 ```
 

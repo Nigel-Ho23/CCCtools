@@ -4,10 +4,11 @@
 # CCCtools
 
 <!-- badges: start -->
+
 <!-- badges: end -->
 
 The goal of CCCtools is to provide functions to run CellChat v2 and
-CellPhoneDB v5 as well as compare their outputs.
+CellPhoneDB v5 as well as compare their outputs. Gokce was here!
 
 ## Installation
 
@@ -15,7 +16,7 @@ You can install the development version of CCCtools:
 
 ``` r
 if (!requireNamespace("pacman", quietly = TRUE)) install.packages("pacman")
-pacman::p_load_gh("Nigel-Ho23/CCCtools")
+pacman::p_load_gh("nigelhojinker/CCCtools")
 ```
 
 ## Example data
@@ -31,15 +32,7 @@ library(CCCtools)
 data(seu.NL)
 
 seu.NL
-#> Loading required package: SeuratObject
-#> Warning: package 'SeuratObject' was built under R version 4.4.3
-#> Loading required package: sp
-#> Warning: package 'sp' was built under R version 4.4.2
-#> 
-#> Attaching package: 'SeuratObject'
-#> The following objects are masked from 'package:base':
-#> 
-#>     intersect, t
+#> Loading required namespace: SeuratObject
 #> An object of class Seurat 
 #> 10353 features across 2233 samples within 1 assay 
 #> Active assay: RNA (10353 features, 0 variable features)

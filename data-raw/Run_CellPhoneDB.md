@@ -117,6 +117,9 @@ parameters in `run_cellphonedb()`:
 - outPath: /path/to/outputs; five .txt files will be generated in every
   run and saved in this directory (creation prior to run is not needed)
 
+You may see [here](../R/run_cellphonedb.R) for full details of
+`run_cellphonedb()`.
+
 ``` r
 # Load your Seurat object
 data(seu.NL)

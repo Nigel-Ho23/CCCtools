@@ -7,8 +7,10 @@
 
 <!-- badges: end -->
 
-The goal of CCCtools is to provide functions to run CellChat v2 and
-CellPhoneDB v5 as well as compare their outputs. Gokce was here!
+The goal of CCCtools is to provide functions to run [CellChat
+v2](https://github.com/jinworks/CellChat) and [CellPhoneDB
+v5](https://github.com/ventolab/CellphoneDB/tree/master) as well as
+compare their outputs. Gokce was here!
 
 ## Installation
 
@@ -28,37 +30,93 @@ the data was generated](data-raw/demo_data.md).
 
 ``` r
 library(CCCtools)
+#> Loading required package: Seurat
+#> Loading required package: SeuratObject
+#> Loading required package: sp
+#> 
+#> Attaching package: 'SeuratObject'
+#> The following objects are masked from 'package:base':
+#> 
+#>     intersect, t
+#> Loading required package: tidyverse
+#> Warning: package 'purrr' was built under R version 4.5.1
+#> ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+#> ✔ dplyr     1.1.4     ✔ readr     2.1.5
+#> ✔ forcats   1.0.0     ✔ stringr   1.5.1
+#> ✔ ggplot2   3.5.2     ✔ tibble    3.3.0
+#> ✔ lubridate 1.9.4     ✔ tidyr     1.3.1
+#> ✔ purrr     1.1.0
+#> ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+#> ✖ dplyr::filter() masks stats::filter()
+#> ✖ dplyr::lag()    masks stats::lag()
+#> ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+#> Loading required package: janitor
+#> 
+#> 
+#> Attaching package: 'janitor'
+#> 
+#> 
+#> The following objects are masked from 'package:stats':
+#> 
+#>     chisq.test, fisher.test
+#> 
+#> 
+#> Loading required package: CellChat
+#> 
+#> Loading required package: igraph
+#> 
+#> 
+#> Attaching package: 'igraph'
+#> 
+#> 
+#> The following objects are masked from 'package:lubridate':
+#> 
+#>     %--%, union
+#> 
+#> 
+#> The following objects are masked from 'package:dplyr':
+#> 
+#>     as_data_frame, groups, union
+#> 
+#> 
+#> The following objects are masked from 'package:purrr':
+#> 
+#>     compose, simplify
+#> 
+#> 
+#> The following object is masked from 'package:tidyr':
+#> 
+#>     crossing
+#> 
+#> 
+#> The following object is masked from 'package:tibble':
+#> 
+#>     as_data_frame
+#> 
+#> 
+#> The following object is masked from 'package:Seurat':
+#> 
+#>     components
+#> 
+#> 
+#> The following objects are masked from 'package:stats':
+#> 
+#>     decompose, spectrum
+#> 
+#> 
+#> The following object is masked from 'package:base':
+#> 
+#>     union
+#> 
+#> 
+#> Loading required package: reticulate
+#> Warning: package 'reticulate' was built under R version 4.5.1
 
 data(seu.NL)
 
 seu.NL
-#> Loading required namespace: SeuratObject
 #> An object of class Seurat 
 #> 10353 features across 2233 samples within 1 assay 
 #> Active assay: RNA (10353 features, 0 variable features)
 #>  1 layer present: data
 ```
-
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
-
-``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
-```
-
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date. `devtools::build_readme()` is handy for this.
-
-You can also embed plots, for example:
-
-<img src="man/figures/README-pressure-1.png" width="100%" />
-
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub and CRAN.

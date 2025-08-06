@@ -91,6 +91,7 @@ seu.NL@meta.data <- seu.NL@meta.data %>% select(patient.id, labels)
 
 seu.NL
 ```
+
 Finally, we write this into the data directory:
 
 ```{r, eval = FALSE}

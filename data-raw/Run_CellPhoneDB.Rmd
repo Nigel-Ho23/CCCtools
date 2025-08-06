@@ -1,0 +1,21 @@
+---
+title: "Running CellPhoneDB in R"
+output: github_document
+date: "2025-08-06"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Introduction
+
+CellPhoneDB is a popular **Python** package developed by [Teichmann Lab](https://www.teichlab.org/), and currently managed and further developed by the [Vento-Tormo Lab](https://ventolab.org/) from CellPhoneDB version 3. It is a useful cell-cell communication tool to directly look up interactions of interest from single-cell multiomics data, with their database of only manually curated and reviewed HUMAN interactions. 
+
+A key feature of CellPhoneDB is its inherent function of accounting for heteromeric complexes by decomplexifying to their subunits and ensuring that expression of all subunits have to be non-zero and above a user-defined threshold to be considered present in the interaction. This accurately recapitulates how interactions can occur in vivo. As such, we thought to incorporate CellPhoneDB with another popular cell-cell communication tool, CellChat, that has the same feature.
+
+# Setting up required environment
+
+## CellPhoneDB conda environment in R
+
+As mentioned in the [Introduction](#introduction), CellPhoneDB is a Python package and currently, does not have an R equivalent. Here, we provide a wrapper function `run_cellphonedb()` for running CellPhoneDB completely within R. To do this, we require the use of the `reticulate` package (a dependency in CCCtools) and provide users with the `cpdb.yaml` file for creating a CellPhoneDB python environment in R. The `cpdb.yaml` file can be found [here](../data/) and is stored in the `CCCtools` package ready for use.

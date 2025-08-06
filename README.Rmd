@@ -34,8 +34,6 @@ pacman::p_load_gh("nigelhojinker/CCCtools")
 
 `seu.NL` is the Seurat object contained 2,233 cells from non-lesional human skin from four different patients. This dataset was created from the data used originally in CellChat tutorial. See this [script for how the data was generated](data-raw/demo_data.md).
 
-
-
 ```{r example}
 library(CCCtools)
 
@@ -45,8 +43,6 @@ seu.NL
 ```
 
 What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
-
-
 
 ```{r cars}
 summary(cars)

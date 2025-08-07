@@ -32,7 +32,7 @@ pacman::p_load_gh("nigelhojinker/CCCtools")
 
 ## Example data
 
-`seu.NL` is the Seurat object contained 2,233 cells from non-lesional human skin from four different patients. This dataset was created from the data used originally in CellChat tutorial. See this [script for how the data was generated](data-raw/demo_data.md).
+`seu.NL` is the Seurat object containing 2,233 cells from non-lesional human skin from four different patients. This dataset was created from the data used originally in CellChat tutorial. See this [script for how the data was generated](data-raw/demo_data.md).
 
 ```{r example}
 suppressPackageStartupMessages(library(CCCtools)) 

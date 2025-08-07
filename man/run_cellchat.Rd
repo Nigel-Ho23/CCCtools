@@ -94,10 +94,11 @@ cellchat@net$prob is a 3-dimensional array consisting of the source(sender cell)
 cellchat@net$pval consists of the corresponding p-values computed for each interaction.
 }
 \description{
-This function takes as input a Seurat object that has been processed and contained annotated cell type labels.
+This function takes as input a Seurat object that has been processed and contains annotated cell type labels in its meta.data.
+
 It runs functions from the CellChat package, namely: createCellChat(), subsetDB(), subsetData(), identifyOverExpressedGenes(),
-identifyOverExpressedInteractions(), computeCommunProb() and filterCommunication(). It takes in arguments listed in createCellChat(),
-subsetDB(), computeCommunProb() and filterCommunication().
+identifyOverExpressedInteractions(), computeCommunProb() and filterCommunication(). run_cellchat() allows users to input
+arguments listed in createCellChat(), subsetDB(), computeCommunProb() and filterCommunication().
 }
 \examples{
 \dontrun{

@@ -39,14 +39,21 @@ if(!file.exists(conda_binary())) install_miniconda()
 For users **with** conda installed, we recommend running the line below to ensure that the correct conda is selected and used by `reticulate`. 
 Of course, users should input the path to conda in their respective local machines.
 
-```{r}
+```{r, eval = FALSE}
+# We used miniforge for our conda installation
+options(reticulate.conda_binary = "C:/path/to/miniforge3/condabin/conda.bat")
+```
+
+```{r, echo = FALSE}
 options(reticulate.conda_binary = "C:/Users/hojkn/AppData/Local/miniforge3/condabin/conda.bat")
 ```
 
 Once installation and conda selection is complete, we can confirm this by running:
 
-```{r}
+```{r, eval = FALSE}
 conda_binary()
+
+## [1] "C:/path/to/miniforge3/condabin/conda.bat"
 ```
 
 Next, we have to create the CellPhoneDB conda environment with the necessary Python modules for running the analysis.
@@ -63,9 +70,16 @@ python_binary <- conda_list() %>%
   filter(name == "cpdb") %>%
   pull(python) %>%
   normalizePath(winslash = "/")
+```
 
+```{r, eval = FALSE}
+# Check right python interpreter selected
 python_binary
 
+## [1] "C:/path/to/miniforge3/envs/cpdb/python.exe"
+```
+
+```{r}
 use_python(python_binary, required = TRUE)
 ```
 

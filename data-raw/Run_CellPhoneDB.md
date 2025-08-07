@@ -58,7 +58,8 @@ Of course, users should input the path to conda in their respective
 local machines.
 
 ``` r
-options(reticulate.conda_binary = "C:/Users/hojkn/AppData/Local/miniforge3/condabin/conda.bat")
+# We used miniforge for our conda installation
+options(reticulate.conda_binary = "C:/path/to/miniforge3/condabin/conda.bat")
 ```
 
 Once installation and conda selection is complete, we can confirm this
@@ -66,9 +67,9 @@ by running:
 
 ``` r
 conda_binary()
-```
 
-    ## [1] "C:/Users/hojkn/AppData/Local/miniforge3/condabin/conda.bat"
+## [1] "C:/path/to/miniforge3/condabin/conda.bat"
+```
 
 Next, we have to create the CellPhoneDB conda environment with the
 necessary Python modules for running the analysis. This is done **only
@@ -86,11 +87,14 @@ python_binary <- conda_list() %>%
   filter(name == "cpdb") %>%
   pull(python) %>%
   normalizePath(winslash = "/")
-
-python_binary
 ```
 
-    ## [1] "C:/Users/hojkn/AppData/Local/miniforge3/envs/cpdb/python.exe"
+``` r
+# Check right python interpreter selected
+python_binary
+
+## [1] "C:/path/to/miniforge3/envs/cpdb/python.exe"
+```
 
 ``` r
 use_python(python_binary, required = TRUE)

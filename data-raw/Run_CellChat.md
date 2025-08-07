@@ -26,9 +26,12 @@ described by the developers of CellChat, triMean is a robust mean method
 given by \[(Q1 + 2M + Q3) / 4\] that returns fewer but stronger
 interactions. If users would like to change the method for calculating
 average expression, they may use the `type` parameter to manually
-overwrite this. `run_cellchat` takes in the same parameters as
-CellChat’s `computeCommunProb()` function, which can be found in this
-[documentation](https://rdrr.io/github/sqjin/CellChat/man/computeCommunProb.html).
+overwrite this.
+
+`run_cellchat` takes in the same parameters as CellChat’s
+`createCellChat()`, `subsetDB()`, `computeCommunProb()` and
+`filterCommunication()`. Details on the respective functions can be
+found by running help(<package_name>) in R.
 
 ## Tutorial
 
@@ -51,10 +54,12 @@ seu.NL@meta.data %>% head()
     ## S3_TAGTGGTAGGATGCGT   Patient3   FBN1+ FIB
 
 In `seu.Nl`, the metadata column for the annotated cell type labels is
-“labels”. We take “labels” as the input for the `group.by` argument in
-`run_cellchat()`.
+“labels”. As such, we take “labels” as the input for the `group.by`
+argument in `run_cellchat()`.
 
-### Running CellChat on with all default parameters:
+### Running CellChat on with all default parameters
+
+This step typically takes a few minutes to run:
 
 ``` r
 cellchat <- run_cellchat(seu.NL, group.by = "labels", assay = "RNA")

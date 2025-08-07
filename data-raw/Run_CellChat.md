@@ -19,7 +19,7 @@ activation or inhibition of ligand-receptor interactions.
 
 `run_cellchat()` takes as input a Seurat object with the normalized
 counts in the data layer and annotated cell types stored in its
-meta.data. For full details on `run_cellchat()`, users may refer
+meta.data. For more details on `run_cellchat()`, users may refer
 [**here**](../R/run_cellchat.R). CellChat offers different methods of
 calculating average gene expression per cell type (default: triMean). As
 described by the developers of CellChat, triMean is a robust mean method

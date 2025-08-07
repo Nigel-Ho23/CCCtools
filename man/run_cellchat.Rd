@@ -94,13 +94,13 @@ cellchat@net$prob is a 3-dimensional array consisting of the source(sender cell)
 cellchat@net$pval consists of the corresponding p-values computed for each interaction.
 }
 \description{
-Run CellChat v2 in R
+This function takes as input a Seurat object that has been processed and contained annotated cell type labels.
+It runs functions from the CellChat package, namely: createCellChat(), subsetDB(), subsetData(), identifyOverExpressedGenes(),
+identifyOverExpressedInteractions(), computeCommunProb() and filterCommunication(). It takes in arguments listed in createCellChat(),
+subsetDB(), computeCommunProb() and filterCommunication().
 }
 \examples{
 \dontrun{
-cellchat <- run_cellchat(seu.NL,
-                         group.by = "labels",
-                         assay    = "RNA",
-                         filepath = "../data/cellchat/cellchat_afterCommunProb.rds")
+cellchat <- run_cellchat(seu.NL, group.by = "labels", assay = "RNA")
 }
 }

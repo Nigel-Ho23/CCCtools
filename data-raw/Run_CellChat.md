@@ -1,0 +1,31 @@
+Wrapper for running CellChat
+================
+2025-08-07
+
+## Introduction
+
+CellChat is a popular R package for inferring cell-cell communication
+from single-cell and/or spatial transcriptomics data. It offers
+functions to visualize the analysis, and the github repository can be
+found [**here**](https://github.com/jinworks/CellChat). CellChat has
+interaction databases for three different species, of which we will use
+HUMAN to find consensus with CellPhoneDB. Like CellPhoneDB, its database
+contains only manually curated ligand-receptor interactions and the
+subunit architecture of heteromeric complexes are considered. In
+additon, CellChat considers co-factors that are involved in the
+activation or inhibition of ligand-receptor interactions.
+
+## Running CellChat directly from Seurat object
+
+`run_cellchat()` takes as input a Seurat object with the normalized
+counts in the data layer and annotated cell types stored in its
+meta.data. For full details on `run_cellchat()`, users may refer
+[**here**](#../R/run_cellchat.R). CellChat offers different methods of
+calculating average gene expression per cell type (default: triMean). As
+described by the developers of CellChat, triMean is a robust mean method
+given by \[(Q1 + 2M + Q3) / 4\] that returns fewer but stronger
+interactions. If users would like to change the method for calculating
+average expression, they may use the `type` parameter to manually
+overwrite this. `run_cellchat` takes in the same parameters as
+CellChat’s `computeCommunProb()` function, which can be found in this
+[documentation](https://rdrr.io/github/sqjin/CellChat/man/computeCommunProb.html).

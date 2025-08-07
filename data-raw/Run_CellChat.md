@@ -23,17 +23,29 @@ meta.data. For more details on `run_cellchat()`, users may refer
 [**here**](../R/run_cellchat.R). CellChat offers different methods of
 calculating average gene expression per cell type (default: triMean). As
 described by the developers of CellChat, triMean is a robust mean method
-given by \[(Q1 + 2M + Q3) / 4\] that returns fewer but stronger
+given by \[(Q1 + 2M + Q3) / 4\]\* that returns fewer but stronger
 interactions. If users would like to change the method for calculating
 average expression, they may use the `type` parameter to manually
 overwrite this.
 
-`run_cellchat` takes in the same parameters as CellChat’s
+`run_cellchat()` takes in the same arguments as CellChat’s
 `createCellChat()`, `subsetDB()`, `computeCommunProb()` and
 `filterCommunication()`. Details on the respective functions can be
 found by running help(<package_name>) in R.
 
+Lastly, `run_cellchat()` runs CellChat analysis on a single dataset up
+to and including `filterCommunication()`. For further downstream
+analyses, please see the [CellChat git
+repository](https://github.com/jinworks/CellChat) for the full tutorial.
+Note that CellChat is already installed when users install CCCtools,
+therefore, users may immediately run CellChat functions used in the
+tutorial(s).
+
+\*: **Q1** First quartile; **M** Median; **Q3** Third quartile
+
 ## Tutorial
+
+R set-up and data input ([example data](../demo_data.md))
 
 ``` r
 pacman::p_load_gh("nigelhojinker/CCCtools")
@@ -53,7 +65,7 @@ seu.NL@meta.data %>% head()
     ## S3_CTGCCTATCAATCACG   Patient3   FBN1+ FIB
     ## S3_TAGTGGTAGGATGCGT   Patient3   FBN1+ FIB
 
-In `seu.Nl`, the metadata column for the annotated cell type labels is
+In `seu.NL`, the metadata column for the annotated cell type labels is
 “labels”. As such, we take “labels” as the input for the `group.by`
 argument in `run_cellchat()`.
 

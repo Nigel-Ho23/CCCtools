@@ -35,11 +35,11 @@ found by running help(<package_name>) in R.
 
 Lastly, `run_cellchat()` runs CellChat analysis on a single dataset up
 to and including `filterCommunication()`. For further downstream
-analyses, please see the [CellChat git
-repository](https://github.com/jinworks/CellChat) for the full tutorial.
-Note that CellChat is already installed when users install CCCtools,
-therefore, users may immediately run CellChat functions used in the
-tutorial(s).
+analyses, please see the [CellChat vignette for a single
+dataset](https://htmlpreview.github.io/?https://github.com/jinworks/CellChat/blob/master/tutorial/CellChat-vignette.html)
+for the full tutorial. Note that CellChat is already installed when
+users install CCCtools, therefore, users may immediately run CellChat
+functions used in the tutorial(s).
 
 \*: **Q1** First quartile; **M** Median; **Q3** Third quartile
 

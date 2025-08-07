@@ -18,7 +18,7 @@ that expression of all subunits have to be non-zero and above a
 user-defined threshold to be considered present in the interaction. This
 accurately recapitulates how interactions can occur in vivo. As such, we
 thought to incorporate CellPhoneDB with another popular cell-cell
-communication tool, CellChat, that has the same feature.
+communication tool, CellChat, that shares the same feature.
 
 # Setting up required environment
 

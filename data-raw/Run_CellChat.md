@@ -69,7 +69,7 @@ In `seu.NL`, the metadata column for the annotated cell type labels is
 “labels”. As such, we take “labels” as the input for the `group.by`
 argument in `run_cellchat()`.
 
-### Running CellChat on with all default parameters
+### Running CellChat with all default parameters
 
 This step typically takes a few minutes to run:
 
@@ -120,7 +120,7 @@ cellchat <- run_cellchat(seu.NL, group.by = "labels", assay = "RNA",
                          key = c("annotation", "version"))
 ```
 
-To remove all non-protein signaling interactions, since a majority of
+To remove only non-protein signaling interactions, since a majority of
 non-protein signaling interactions consists of metabolic and synaptic
 signaling:
 

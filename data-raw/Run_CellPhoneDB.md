@@ -117,20 +117,7 @@ We provide the `run_cellphonedb()` function that can give us output from
 CellPhoneDB analysis ([method
 2](https://github.com/ventolab/CellphoneDB/blob/master/notebooks/T1_Method2.ipynb)).
 This function takes in a Seurat object with normalized counts in the
-data layer of the RNA assay, and annotated cell type labels in the
-meta.data. Here is a breakdown of the other arguments in
-`run_cellphonedb()`:
-
-- labels: meta.data column name for the annotated cell type labels
-- cpdbPath: /path/to/cellphonedb.zip
-- metaPath: /path/to/meta.tsv; path to the tsv file and the tsv file
-  itself will be created internally, there is no need to make the file
-  path before running this function
-- adataPath /path/to/normcounts.h5ad; function creates an AnnData object
-  internally and save it to the user-defined path. Similar to metaPath,
-  users do not have to create the file path before running the function
-- outPath: /path/to/outputs; five .txt files will be generated in every
-  run and saved in this directory (creation prior to run is not needed)
+data layer of the RNA assay.
 
 You may see [here](../R/run_cellphonedb.R) for full details of
 `run_cellphonedb()`.

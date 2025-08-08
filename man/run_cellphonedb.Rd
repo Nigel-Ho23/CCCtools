@@ -36,7 +36,7 @@ run_cellphonedb(
 Folder path to CellPhoneDB analysis outputs
 }
 \description{
-Run CellPhoneDB version 5 in R
+Runs CellPhoneDBv5 on a Seurat object
 }
 \examples{
 \dontrun{

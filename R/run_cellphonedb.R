@@ -1,5 +1,8 @@
 #' Run CellPhoneDB version 5 in R
 #'
+#' @description
+#' Runs CellPhoneDBv5 on a Seurat object
+#'
 #' @param obj Seurat object with normalized counts in the data layer of the RNA assay
 #' @param group Metadata column to filter by; this is for seurat objects containing cells from different disease status or time frames etc. (default = NULL)
 #' @param toKeep Value within the metadata column of interest to retain for the analysis. This field is mandatory if group is not NULL. (default = NULL)

@@ -51,7 +51,7 @@ In **CCCtools**, we provide the functions `run_cellchat()` and
 Please refer to the following links to the documentations on running
 these tools on your dataset:
 
-- [Running CellChat on my Seurat
+- [Running CellChat on Seurat
   object](https://github.com/nigelhojinker/CCCtools/blob/main/data-raw/Run_CellChat.md)
-- [Running CellPhoneDB on my Seurat
+- [Running CellPhoneDB on Seurat
   object](https://github.com/nigelhojinker/CCCtools/blob/main/data-raw/Run_CellPhoneDB.md)

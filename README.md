@@ -41,3 +41,16 @@ seu.NL
 #> Active assay: RNA (10353 features, 0 variable features)
 #>  1 layer present: data
 ```
+
+## Tutorials
+
+In **CCCtools**, we provide the functions `run_cellchat()` and
+`run_cellphonedb()` for users to perform CellChat and CellPhoneDB
+(method 2) analysis directly on their processed Seurat object.
+
+Please refer to the following links to the documentations on running
+these tools on your dataset:
+
+- [Running CellChat on my Seurat object](../data-raw/Run_CellChat.md)
+- [Running CellPhoneDB on my Seurat
+  object](../data-raw/Run_CellPhoneDB.md)

@@ -45,17 +45,26 @@ rm(list = ls())
 
 ### Set up conda & python via reticulate
 
-For users **without** a prior conda installation, you may run the line
+For users **WITHOUT** a prior conda installation, you may run the line
 below for installation of miniconda:
 
 ``` r
 if(!file.exists(conda_binary())) install_miniconda()
 ```
 
-For users **with** conda installed, we recommend running the line below
-to ensure that the correct conda is selected and used by `reticulate`.
-Of course, users should input the path to conda in their respective
-local machines.
+For users **WITH** conda installed previously, we can check that
+`reticulate` automatically detects the installed conda by running:
+
+``` r
+conda_binary()
+```
+
+#### What if my conda installation is not automatically detected?
+
+If conda is NOT automatically detected, we recommend running the line
+below to ensure that the correct conda is selected and used by
+`reticulate`. Of course, users should input the path to conda in their
+respective local machines.
 
 ``` r
 # We used miniforge for our conda installation
@@ -105,10 +114,12 @@ use_python(python_binary, required = TRUE)
 Now, we are ready to run CellPhoneDB in R.
 
 We provide the `run_cellphonedb()` function that can give us output from
-CellPhoneDB analysis (method 2). This function takes in a Seurat object
-with normalized counts in the data layer of the RNA assay, and annotated
-cell type labels in the meta.data. Here is a breakdown of the other
-parameters in `run_cellphonedb()`:
+CellPhoneDB analysis ([method
+2](https://github.com/ventolab/CellphoneDB/blob/master/notebooks/T1_Method2.ipynb)).
+This function takes in a Seurat object with normalized counts in the
+data layer of the RNA assay, and annotated cell type labels in the
+meta.data. Here is a breakdown of the other arguments in
+`run_cellphonedb()`:
 
 - labels: meta.data column name for the annotated cell type labels
 - cpdbPath: /path/to/cellphonedb.zip

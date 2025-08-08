@@ -23,9 +23,8 @@ Bioconductor, as they are dependencies of CellChat:
 if (!requireNamespace("BiocManager", quietly = TRUE)) install.packages("BiocManager")
 
 bioc_pkgs <- c(
-  "BiocNeighbors", "Biobase", "BiocGenerics",
-  "SingleCellExperiment", "S4Vectors", "IRanges",
-  "MatrixGenerics", "ComplexHeatmap", "circlize"
+  "BiocNeighbors", "Biobase", "BiocGenerics", "SingleCellExperiment", 
+  "S4Vectors", "IRanges", "MatrixGenerics", "ComplexHeatmap"
 )
 
 missing_pkgs <- bioc_pkgs[!sapply(bioc_pkgs, requireNamespace, quietly = TRUE)]
@@ -33,6 +32,8 @@ if (length(missing_pkgs) > 0) {
   BiocManager::install(missing_pkgs, ask = FALSE, update = TRUE)
 }
 ```
+
+### Download package
 
 Now, you are ready to install the development version of CCCtools:
 

@@ -42,7 +42,7 @@ seu.NL
 #>  1 layer present: data
 ```
 
-## Tutorials
+## Functions
 
 In **CCCtools**, we provide the functions `run_cellchat()` and
 `run_cellphonedb()` for users to perform CellChat and CellPhoneDB
@@ -51,6 +51,7 @@ In **CCCtools**, we provide the functions `run_cellchat()` and
 Please refer to the following links to the documentations on running
 these tools on your dataset:
 
-- [Running CellChat on my Seurat object](../data-raw/Run_CellChat.md)
+- [Running CellChat on my Seurat
+  object](https://github.com/nigelhojinker/CCCtools/blob/main/data-raw/Run_CellChat.md)
 - [Running CellPhoneDB on my Seurat
-  object](../data-raw/Run_CellPhoneDB.md)
+  object](https://github.com/nigelhojinker/CCCtools/blob/main/data-raw/Run_CellPhoneDB.md)

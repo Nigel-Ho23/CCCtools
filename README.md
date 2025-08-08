@@ -14,7 +14,27 @@ compare their outputs. Gokce was here!
 
 ## Installation
 
-You can install the development version of CCCtools:
+### Prerequisites
+
+Before install **CCCtools**, be sure to install the below packages via
+Bioconductor, as they are dependencies of CellChat:
+
+``` r
+if (!requireNamespace("BiocManager", quietly = TRUE)) install.packages("BiocManager")
+
+bioc_pkgs <- c(
+  "BiocNeighbors", "Biobase", "BiocGenerics",
+  "SingleCellExperiment", "S4Vectors", "IRanges",
+  "MatrixGenerics", "ComplexHeatmap", "circlize"
+)
+
+missing_pkgs <- bioc_pkgs[!sapply(bioc_pkgs, requireNamespace, quietly = TRUE)]
+if (length(missing_pkgs) > 0) {
+  BiocManager::install(missing_pkgs, ask = FALSE, update = TRUE)
+}
+```
+
+Now, you are ready to install the development version of CCCtools:
 
 ``` r
 if (!requireNamespace("pacman", quietly = TRUE)) install.packages("pacman")
@@ -29,9 +49,7 @@ the data used originally in CellChat tutorial. See this [script for how
 the data was generated](data-raw/demo_data.md).
 
 ``` r
-suppressPackageStartupMessages(library(CCCtools)) 
-#> Warning: package 'purrr' was built under R version 4.5.1
-#> Warning: package 'reticulate' was built under R version 4.5.1
+pacman::p_load_gh("nigelhojinker/CCCtools")
 
 data(seu.NL)
 

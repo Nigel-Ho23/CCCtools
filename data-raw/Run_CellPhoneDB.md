@@ -82,7 +82,7 @@ conda_binary()
 
 Next, we have to create the CellPhoneDB conda environment with the
 necessary Python modules for running the analysis. This is done **only
-once:**
+once**, and typically takes a few minutes to complete:
 
 ``` r
 conda_create(envname = "cpdb", environment = "/path/to/cpdb.yaml")
@@ -116,6 +116,10 @@ Now, we are ready to run CellPhoneDB in R.
 We provide the `run_cellphonedb()` function that can give us output from
 CellPhoneDB analysis ([method
 2](https://github.com/ventolab/CellphoneDB/blob/master/notebooks/T1_Method2.ipynb)).
+`run_cellphonedb()` can take in the same arguments as the Python-based
+function, and users may refer to the linked “method 2” for details on
+what each argument does.
+
 This function takes in a Seurat object with normalized counts in the
 data layer of the RNA assay.
 
@@ -146,6 +150,18 @@ seu.NL@meta.data %>% head()
     ## S3_CTGCCTATCAATCACG   Patient3   FBN1+ FIB
     ## S3_TAGTGGTAGGATGCGT   Patient3   FBN1+ FIB
 
+## Running CellPhoneDB with all default parameters
+
+Minimally, `run_cellphonedb()` takes in five arguments listed in the
+example below - a Seurat object, metadata column corresponding to the
+annotated cell types, path to the CellPhoneDB interaction database,
+three file paths for which internally created data required for the
+analysis will be saved and stored in said paths.
+
+Note: `metaPath`, `adataPath` and `outPath` will be created when users
+run `run_cellphonedb()`. Therefore, there is no need to create these
+directories before running the function.
+
 ``` r
 run_cellphonedb(obj = seu.NL,
                 labels = "labels",
@@ -174,4 +190,21 @@ run_cellphonedb(obj = seu.NL,
 # Saved pvalues to ../data/cpdb/NL\statistical_analysis_pvalues_08_06_2025_170825.txt
 # Saved significant_means to ../data/cpdb/NL\statistical_analysis_significant_means_08_06_2025_170825.txt
 # CellPhoneDB analysis completed successfully.
+```
+
+## Running CellPhoneDB with adjustable parameters
+
+``` r
+run_cellphonedb(seu.NL,
+                labels = "labels",
+                cpdbPath = "../data/cellphonedb.zip",
+                metaPath = "../test/testagain/NL_meta.tsv",
+                adataPath = "../test/testagain/NL_normcounts.h5ad",
+                outPath = "results/cpdb/NL",
+                iterations = 123,
+                threshold = 0.2,
+                threads = 5,
+                debug_seed = 42,
+                result_precision = 5,
+                score_interactions = TRUE)
 ```

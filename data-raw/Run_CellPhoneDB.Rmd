@@ -65,7 +65,7 @@ conda_binary()
 ```
 
 Next, we have to create the CellPhoneDB conda environment with the necessary Python modules for running the analysis.
-This is done **only once:**
+This is done **only once**, and typically takes a few minutes to complete:
 
 ```{r, eval = FALSE}
 conda_create(envname = "cpdb", environment = "/path/to/cpdb.yaml")
@@ -73,7 +73,7 @@ conda_create(envname = "cpdb", environment = "/path/to/cpdb.yaml")
 
 Once the cpdb environment has been created, we have to select its python interpreter:
 
-```{r}
+```{r, eval = FALSE}
 python_binary <- conda_list() %>%
   filter(name == "cpdb") %>%
   pull(python) %>%
@@ -87,7 +87,7 @@ python_binary
 ## [1] "C:/path/to/miniforge3/envs/cpdb/python.exe"
 ```
 
-```{r}
+```{r, eval = FALSE}
 use_python(python_binary, required = TRUE)
 ```
 
@@ -95,7 +95,8 @@ use_python(python_binary, required = TRUE)
 
 Now, we are ready to run CellPhoneDB in R.
 
-We provide the `run_cellphonedb()` function that can give us output from CellPhoneDB analysis ([method 2](https://github.com/ventolab/CellphoneDB/blob/master/notebooks/T1_Method2.ipynb)).
+We provide the `run_cellphonedb()` function that can give us output from CellPhoneDB analysis ([method 2](https://github.com/ventolab/CellphoneDB/blob/master/notebooks/T1_Method2.ipynb)). `run_cellphonedb()` can take in the same arguments as the Python-based function, and users may refer to the linked "method 2" for details on what each argument does.
+
 This function takes in a Seurat object with normalized counts in the data layer of the RNA assay.
 
 You may see [here](../R/run_cellphonedb.R) for full details of `run_cellphonedb()`.
@@ -108,6 +109,12 @@ seu.NL
 
 seu.NL@meta.data %>% head()
 ```
+
+## Running CellPhoneDB with all default parameters
+
+Minimally, `run_cellphonedb()` takes in five arguments listed in the example below - a Seurat object, metadata column corresponding to the annotated cell types, path to the CellPhoneDB interaction database, three file paths for which internally created data required for the analysis will be saved and stored in said paths. 
+
+Note: `metaPath`, `adataPath` and `outPath` will be created when users run `run_cellphonedb()`. Therefore, there is no need to create these directories before running the function.
 
 ```{r, eval = FALSE}
 
@@ -138,6 +145,23 @@ run_cellphonedb(obj = seu.NL,
 # Saved pvalues to ../data/cpdb/NL\statistical_analysis_pvalues_08_06_2025_170825.txt
 # Saved significant_means to ../data/cpdb/NL\statistical_analysis_significant_means_08_06_2025_170825.txt
 # CellPhoneDB analysis completed successfully.
+```
+
+## Running CellPhoneDB with adjustable parameters
+
+```{r, eval = FALSE}
+run_cellphonedb(seu.NL,
+                labels = "labels",
+                cpdbPath = "../data/cellphonedb.zip",
+                metaPath = "../test/testagain/NL_meta.tsv",
+                adataPath = "../test/testagain/NL_normcounts.h5ad",
+                outPath = "results/cpdb/NL",
+                iterations = 123,
+                threshold = 0.2,
+                threads = 5,
+                debug_seed = 42,
+                result_precision = 5,
+                score_interactions = TRUE)
 ```
 
 

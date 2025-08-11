@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of CCCtools is to provide functions to run [CellChat v2](https://github.com/jinworks/CellChat) and [CellPhoneDB v5](https://github.com/ventolab/CellphoneDB/tree/master) as well as compare their outputs. Gokce was here!
+The goal of CCCtools is to provide functions to run [CellChat v2](https://github.com/jinworks/CellChat) and [CellPhoneDB v5](https://github.com/ventolab/CellphoneDB/tree/master) as well as compare their outputs. Gokce was here to check username chnage!
 
 ## Installation
 

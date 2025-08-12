@@ -7,7 +7,7 @@
 #' @param group Metadata column to filter by; this is for seurat objects containing cells from different disease status or time frames etc. (default = NULL)
 #' @param toKeep Value within the metadata column of interest to retain for the analysis. This field is mandatory if group is not NULL. (default = NULL)
 #' @param labels Metadata column name of cell type annotations
-#' @param use_dir Input required to run CellPhoneDB and the output files from the analysis is created and saved to a temp file (default). Should users desire to have these files be stored in their personal directories, they may input their filepath to this argument.
+#' @param use_dir Input files required to run CellPhoneDB and the output files from the analysis are created and saved to a temp file (default). Should users desire to have these files be stored in their personal directories, they may input their filepath to this argument.
 #' @param ... Takes in any arguments from c("iterations", "threads", "debug_seed", "result_precision", "subsampling_num_pc", "subsampling_num_cells") for user customization, else running on the default values for these paramters. See Value below for link to description by CellPhoneDB
 #' @param counts_data See Value below for link to description by CellPhoneDB
 #' @param active_tfs_file_path See Value below for link to description by CellPhoneDB

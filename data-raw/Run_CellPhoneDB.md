@@ -85,7 +85,9 @@ necessary Python modules for running the analysis. This is done **only
 once**, and typically takes a few minutes to complete:
 
 ``` r
-conda_create(envname = "cpdb", environment = "/path/to/cpdb.yaml")
+config <- file.path( pacman::p_path("CCCtools"), "data/cpdb.yaml" )
+
+conda_create(envname = "cpdb", environment = config)
 ```
 
 Once the cpdb environment has been created, we have to select its python
@@ -163,12 +165,7 @@ run `run_cellphonedb()`. Therefore, there is no need to create these
 directories before running the function.
 
 ``` r
-run_cellphonedb(obj = seu.NL,
-                labels = "labels",
-                cpdbPath  = "../data/cellphonedb.zip",
-                metaPath  = "../data/cpdb/NL_meta.tsv",
-                adataPath = "../data/cpdb/NL.h5ad",
-                outPath   = "../data/cpdb/NL")
+run_cellphonedb(obj = seu.NL, labels = "labels")
 
 # Reading user files...
 # The following user files were loaded successfully:
@@ -197,10 +194,6 @@ run_cellphonedb(obj = seu.NL,
 ``` r
 run_cellphonedb(seu.NL,
                 labels = "labels",
-                cpdbPath = "../data/cellphonedb.zip",
-                metaPath = "../test/testagain/NL_meta.tsv",
-                adataPath = "../test/testagain/NL_normcounts.h5ad",
-                outPath = "results/cpdb/NL",
                 iterations = 123,
                 threshold = 0.2,
                 threads = 5,

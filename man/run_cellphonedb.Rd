@@ -6,85 +6,61 @@
 \usage{
 run_cellphonedb(
   obj,
+  labels,
   group.by = NULL,
   toKeep = NULL,
-  labels,
-  cpdbPath,
-  metaPath,
-  adataPath,
+  use_dir = NULL,
+  ...,
   counts_data = "hgnc_symbol",
   active_tfs_file_path = NULL,
   microenvs_file_path = NULL,
   score_interactions = FALSE,
-  iterations = 1000,
   threshold = 0.1,
-  threads = 4,
-  debug_seed = -1,
-  result_precision = 3,
   pvalue = 0.05,
   subsampling = FALSE,
   subsampling_log = FALSE,
-  subsampling_num_pc = 100,
-  subsampling_num_cells = 1000,
   separator = "|",
   debug = FALSE,
-  outPath,
   output_suffix = NULL
 )
 }
 \arguments{
 \item{obj}{Seurat object with normalized counts in the data layer of the RNA assay}
 
-\item{toKeep}{Value within the metadata column of interest to retain for the analysis. This field is mandatory if group is not NULL. (default = NULL)}
-
 \item{labels}{Metadata column name of cell type annotations}
 
-\item{cpdbPath}{Path to 'cellphonedb.zip' file}
+\item{toKeep}{Value within the metadata column of interest to retain for the analysis. This field is mandatory if group is not NULL. (default = NULL)}
 
-\item{metaPath}{Path to metadata file created internally - must end with .tsv}
+\item{use_dir}{Input required to run CellPhoneDB and the output files from the analysis is created and saved to a temp file (default). Should users desire to have these files be stored in their personal directories, they may input their filepath to this argument.}
 
-\item{adataPath}{Path to AnnData object created internally - must end with .h5ad}
+\item{...}{Takes in any arguments from c("iterations", "threads", "debug_seed", "result_precision", "subsampling_num_pc", "subsampling_num_cells") for user customization, else running on the default values for these paramters. See Value below for link to description by CellPhoneDB}
 
-\item{counts_data}{see Value below for link to description by CellPhoneDB}
+\item{counts_data}{See Value below for link to description by CellPhoneDB}
 
-\item{active_tfs_file_path}{see Value below for link to description by CellPhoneDB}
+\item{active_tfs_file_path}{See Value below for link to description by CellPhoneDB}
 
-\item{microenvs_file_path}{see Value below for link to description by CellPhoneDB}
+\item{microenvs_file_path}{See Value below for link to description by CellPhoneDB}
 
-\item{score_interactions}{see Value below for link to description by CellPhoneDB}
+\item{score_interactions}{See Value below for link to description by CellPhoneDB}
 
-\item{iterations}{see Value below for link to description by CellPhoneDB}
+\item{threshold}{See Value below for link to description by CellPhoneDB}
 
-\item{threshold}{see Value below for link to description by CellPhoneDB}
+\item{pvalue}{See Value below for link to description by CellPhoneDB}
 
-\item{threads}{see Value below for link to description by CellPhoneDB}
+\item{subsampling}{See Value below for link to description by CellPhoneDB}
 
-\item{debug_seed}{see Value below for link to description by CellPhoneDB}
+\item{subsampling_log}{See Value below for link to description by CellPhoneDB}
 
-\item{result_precision}{see Value below for link to description by CellPhoneDB}
+\item{separator}{See Value below for link to description by CellPhoneDB}
 
-\item{pvalue}{see Value below for link to description by CellPhoneDB}
+\item{debug}{See Value below for link to description by CellPhoneDB}
 
-\item{subsampling}{see Value below for link to description by CellPhoneDB}
-
-\item{subsampling_log}{see Value below for link to description by CellPhoneDB}
-
-\item{subsampling_num_pc}{see Value below for link to description by CellPhoneDB}
-
-\item{subsampling_num_cells}{see Value below for link to description by CellPhoneDB}
-
-\item{separator}{see Value below for link to description by CellPhoneDB}
-
-\item{debug}{see Value below for link to description by CellPhoneDB}
-
-\item{outPath}{Path to store all output .txt files from CellPhoneDB analysis}
-
-\item{output_suffix}{see Value below for link to description by CellPhoneDB}
+\item{output_suffix}{See Value below for link to description by CellPhoneDB}
 
 \item{group}{Metadata column to filter by; this is for seurat objects containing cells from different disease status or time frames etc. (default = NULL)}
 }
 \value{
-Folder path to CellPhoneDB analysis outputs
+Folder path to CellPhoneDB analysis outputs and result as a list of outputs in the R session
 
 For arguments from counts_data to output_suffix, please refer to https://github.com/ventolab/CellphoneDB/blob/master/notebooks/T1_Method2.ipynb
 }
@@ -98,19 +74,11 @@ run_cellphonedb(
   obj = seurat_object,
   group  = "condition",           # if seurat object contains multiple conditions to filter, input column name in metadata
   toKeep = "treated",             # mandatory if group is not NULL; input condition to be filtered
-  labels = "celltype",
-  cpdbPath  = "data/cellphonedb.zip",
-  metaPath  = "data/meta.tsv",    # internally created metadata file will be stored here
-  adataPath = "data/data.h5ad",   # internally created AnnData object will be stored here
-  outPath   = "output/results")
+  labels = "celltype")
 
-## For users interested in customising their CellPhoneDB run
+## For users interested in customizing their CellPhoneDB run
 run_cellphonedb(seu.NL,
   labels = "labels",
-  cpdbPath = "../data/cellphonedb.zip",
-  metaPath = "../test/testagain/NL_meta.tsv",
-  adataPath = "../test/testagain/NL_normcounts.h5ad",
-  outPath = "results/cpdb/NL",
   iterations = 100,
   threshold = 0.2,
   threads = 5,

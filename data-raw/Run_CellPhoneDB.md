@@ -27,11 +27,7 @@ and currently, does not have an R equivalent. Here, we provide a wrapper
 function `run_cellphonedb()` for running CellPhoneDB completely within
 R. To do this, we require the use of the `reticulate` package (a
 dependency in CCCtools) and provide users with the `cpdb.yaml` file for
-creating the CellPhoneDB python environment in R. In addition to the
-`cpdb.yaml` file, the CellPhoneDB interaction database `cellphonedb.zip`
-is also **required** for running CellPhoneDB analysis; you may find the
-environment file and database in the same directory for download
-[**here**](../data/).
+creating the CellPhoneDB python environment in R.
 
 ## CellPhoneDB conda environment in R
 

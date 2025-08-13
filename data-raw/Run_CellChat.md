@@ -128,3 +128,41 @@ signaling:
 cellchat <- run_cellchat(seu.NL, group.by = "labels", assay = "RNA",
                          subsetDB = TRUE)
 ```
+
+### Extracting all relevant interactions from CellChat analysis
+
+We define relevant interactions as all inferred interactions from
+CellChat - both significant and insignificant - except those that do not
+pass the criteria set by min.cells in CellChat’s `filterCommunication()`
+function.
+
+We provide a function `pull_netslot()` to execute this extraction and
+return a dataframe of all relevant interactions from the analysis. This
+function is an edited function based on CellChat’s
+`subsetCommunication()`. The rationale for `pull_netslot()` is to obtain
+full output comparison from both CellChat and CellPhoneDB with the
+reasoning that some interactions in CellChat may be insignificant in
+CellChat, but significant in CellPhoneDB, vice versa. This will be
+relevant to the `crosscheck()` function after users have ran both
+CellChat and CellPhoneDB.
+
+Refer [**here**](../R/pull_netslot.R) for more details.
+
+``` r
+cellchat.res <- pull_netslot(cellchat)
+
+cellchat.res %>% glimpse()
+# Rows: 62,929
+# Columns: 11
+# $ source             <fct> APOE+ FIB, FBN1+ FIB, COL11A1+ FIB, Inflam. FIB, cDC1, cDC2, LC, Inflam. DC, TC, Inflam. TC, CD40LG+ TC, NK…
+# $ target             <fct> APOE+ FIB, APOE+ FIB, APOE+ FIB, APOE+ FIB, APOE+ FIB, APOE+ FIB, APOE+ FIB, APOE+ FIB, APOE+ FIB, APOE+ FI…
+# $ interaction_name   <fct> TGFB1_TGFBR1_TGFBR2, TGFB1_TGFBR1_TGFBR2, TGFB1_TGFBR1_TGFBR2, TGFB1_TGFBR1_TGFBR2, TGFB1_TGFBR1_TGFBR2, TG…
+# $ prob               <dbl> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…
+# $ pval               <dbl> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,…
+# $ interaction_name_2 <chr> "TGFB1 - (TGFBR1+TGFBR2)", "TGFB1 - (TGFBR1+TGFBR2)", "TGFB1 - (TGFBR1+TGFBR2)", "TGFB1 - (TGFBR1+TGFBR2)",…
+# $ pathway_name       <chr> "TGFb", "TGFb", "TGFb", "TGFb", "TGFb", "TGFb", "TGFb", "TGFb", "TGFb", "TGFb", "TGFb", "TGFb", "TGFb", "TG…
+# $ ligand             <chr> "TGFB1", "TGFB1", "TGFB1", "TGFB1", "TGFB1", "TGFB1", "TGFB1", "TGFB1", "TGFB1", "TGFB1", "TGFB1", "TGFB1",…
+# $ receptor           <chr> "TGFbR1_R2", "TGFbR1_R2", "TGFbR1_R2", "TGFbR1_R2", "TGFbR1_R2", "TGFbR1_R2", "TGFbR1_R2", "TGFbR1_R2", "TG…
+# $ annotation         <chr> "Secreted Signaling", "Secreted Signaling", "Secreted Signaling", "Secreted Signaling", "Secreted Signaling…
+# $ evidence           <chr> "KEGG: hsa04350", "KEGG: hsa04350", "KEGG: hsa04350", "KEGG: hsa04350", "KEGG: hsa04350", "KEGG: hsa04350",…
+```

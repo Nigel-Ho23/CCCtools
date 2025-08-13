@@ -5,8 +5,8 @@
 \title{Run CellPhoneDB version 5 in R}
 \usage{
 run_cellphonedb(
-  obj,
-  labels,
+  obj = NULL,
+  labels = NULL,
   group.by = NULL,
   toKeep = NULL,
   use_dir = NULL,
@@ -60,7 +60,7 @@ run_cellphonedb(
 \item{group}{Metadata column to filter by; this is for seurat objects containing cells from different disease status or time frames etc. (default = NULL)}
 }
 \value{
-Folder path to CellPhoneDB analysis outputs and result as a list of outputs in the R session
+Folder path to CellPhoneDB analysis outputs and result as a list of the outputs in the R session
 
 For arguments from counts_data to output_suffix, please refer to https://github.com/ventolab/CellphoneDB/blob/master/notebooks/T1_Method2.ipynb
 }

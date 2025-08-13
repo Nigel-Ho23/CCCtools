@@ -118,12 +118,13 @@ Now, we are ready to run CellPhoneDB in R.
 We provide the `run_cellphonedb()` function that can give us output from
 CellPhoneDB analysis ([method
 2](https://github.com/ventolab/CellphoneDB/blob/master/notebooks/T1_Method2.ipynb)).
-`run_cellphonedb()` can take in the same arguments as the Python-based
+`run_cellphonedb()` can take in the same arguments as its Python-based
 function, and users may refer to the linked “method 2” for details on
 what each argument does.
 
 This function takes in a Seurat object with normalized counts in the
-data layer of the RNA assay.
+data layer of the RNA assay and annotated cell type labels in its
+meta.data.
 
 You may see [here](../R/run_cellphonedb.R) for full details of
 `run_cellphonedb()`.
@@ -154,50 +155,65 @@ seu.NL@meta.data %>% head()
 
 ## Running CellPhoneDB with all default parameters
 
-Minimally, `run_cellphonedb()` takes in five arguments listed in the
-example below - a Seurat object, metadata column corresponding to the
-annotated cell types, path to the CellPhoneDB interaction database,
-three file paths for which internally created data required for the
-analysis will be saved and stored in said paths.
-
-Note: `metaPath`, `adataPath` and `outPath` will be created when users
-run `run_cellphonedb()`. Therefore, there is no need to create these
-directories before running the function.
+Minimally, `run_cellphonedb()` takes in a Seurat object and the metadata
+column name corresponding to the annotated cell types. It creates a
+temporary directory (by default) that stores input files required to run
+CellPhoneDB, as well as the output .txt files from the analysis. Users
+may make a copy of the temporary directory for future use of the data if
+necessary.
 
 ``` r
-run_cellphonedb(obj = seu.NL, labels = "labels")
+cpdb <- run_cellphonedb(obj = seu.NL, labels = "labels")
 
+# use_dir is NULL. Creating temp directory for file creation and storage.
+# Creating input and output files to directory: C:\Users\hojkn\AppData\Local\Temp\RtmpKixGIi/seu.NL 
+#  Note: Make a copy of the temp directory (if applicable) for future use if necessary. 
+# input_meta.tsv file created and saved to: C:\Users\hojkn\AppData\Local\Temp\RtmpKixGIi/seu.NL 
+# input.h5ad file created and saved to: C:\Users\hojkn\AppData\Local\Temp\RtmpKixGIi/seu.NL 
 # Reading user files...
 # The following user files were loaded successfully:
-# ../data/cpdb/NL.h5ad
-# ../data/cpdb/NL_meta.tsv
-# [ ][CORE][06/08/25-17:07:51][INFO] [Cluster Statistical Analysis] Threshold:0.1 Iterations:1000 Debug-seed:-1 Threads:4 Precision:3
-# [ ][CORE][06/08/25-17:07:57][INFO] Running Real Analysis
-# [ ][CORE][06/08/25-17:07:57][INFO] Running Statistical Analysis
-# 100%|██████████| 1000/1000 [00:27<00:00, 35.87it/s][ ][CORE][06/08/25-17:08:25][INFO] Building Pvalues result
-# [ ][CORE][06/08/25-17:08:25][INFO] Building results
-# Saved deconvoluted to ../data/cpdb/NL\statistical_analysis_deconvoluted_08_06_2025_170825.txt
-# Saved deconvoluted_percents to ../data/cpdb/NL\statistical_analysis_deconvoluted_percents_08_06_2025_170825.txt
-# Saved means to ../data/cpdb/NL\statistical_analysis_means_08_06_2025_170825.txt
+# C:\Users\hojkn\AppData\Local\Temp\RtmpKixGIi/seu.NL/input.h5ad
+# C:\Users\hojkn\AppData\Local\Temp\RtmpKixGIi/seu.NL/input_meta.tsv
+# [ ][CORE][13/08/25-16:37:23][INFO] [Cluster Statistical Analysis] Threshold:0.1 Iterations:1000 Debug-seed:-1 Threads:4 Precision:3
+# [ ][CORE][13/08/25-16:37:23][INFO] Running Real Analysis
+# [ ][CORE][13/08/25-16:37:23][INFO] Running Statistical Analysis
+# 100%|██████████| 1000/1000 [00:38<00:00, 25.86it/s][ ][CORE][13/08/25-16:38:02][INFO] Building Pvalues result
+# [ ][CORE][13/08/25-16:38:02][INFO] Building results
+# Saved deconvoluted to C:\Users\hojkn\AppData\Local\Temp\RtmpKixGIi/seu.NL\statistical_analysis_deconvoluted_08_13_2025_163802.txt
+# Saved deconvoluted_percents to C:\Users\hojkn\AppData\Local\Temp\RtmpKixGIi/seu.NL\statistical_analysis_deconvoluted_percents_08_13_2025_163802.txt
+# Saved means to C:\Users\hojkn\AppData\Local\Temp\RtmpKixGIi/seu.NL\statistical_analysis_means_08_13_2025_163802.txt
+# Saved pvalues to C:\Users\hojkn\AppData\Local\Temp\RtmpKixGIi/seu.NL\statistical_analysis_pvalues_08_13_2025_163802.txt
 # 
-# Warning in py_to_r.pandas.core.frame.DataFrame(<environment>) :
-#   index contains duplicated values: row names not set
-# Warning in py_to_r.pandas.core.frame.DataFrame(<environment>) :
-#   index contains duplicated values: row names not set
-# Saved pvalues to ../data/cpdb/NL\statistical_analysis_pvalues_08_06_2025_170825.txt
-# Saved significant_means to ../data/cpdb/NL\statistical_analysis_significant_means_08_06_2025_170825.txt
 # CellPhoneDB analysis completed successfully.
+# Warning messages:
+# 1: In dir.create(prefix %>% normalizePath(winslash = "/"), recursive = TRUE) :
+#   'C:\Users\hojkn\AppData\Local\Temp\RtmpKixGIi\seu.NL' already exists
+# 2: In py_to_r.pandas.core.frame.DataFrame(<environment>) :
+#   index contains duplicated values: row names not set
+# 3: In py_to_r.pandas.core.frame.DataFrame(<environment>) :
+#   index contains duplicated values: row names not set
+# Saved significant_means to C:\Users\hojkn\AppData\Local\Temp\RtmpKixGIi/seu.NL\statistical_analysis_significant_means_08_13_2025_163802.txt
+```
+
+## Running CellPhoneDB with user-defined directory
+
+Should users desire for the files to be created to their directory of
+choice, simply add the path to the directory of interest in the argument
+`use_dir`.
+
+``` r
+cpdb <- run_cellphonedb(seu.NL, labels = "labels", use_dir = "cpdb/results")
 ```
 
 ## Running CellPhoneDB with adjustable parameters
 
 ``` r
-run_cellphonedb(seu.NL,
-                labels = "labels",
-                iterations = 123,
-                threshold = 0.2,
-                threads = 5,
-                debug_seed = 42,
-                result_precision = 5,
-                score_interactions = TRUE)
+cpdb <- run_cellphonedb(seu.NL,
+                        labels = "labels",
+                        iterations = 123,
+                        threshold = 0.2,
+                        threads = 5,
+                        debug_seed = 42,
+                        result_precision = 5,
+                        score_interactions = TRUE)
 ```

@@ -21,7 +21,7 @@
 #' @param debug See Value below for link to description by CellPhoneDB
 #' @param output_suffix See Value below for link to description by CellPhoneDB
 #'
-#' @returns Folder path to CellPhoneDB analysis outputs and result as a list of outputs in the R session
+#' @returns Folder path to CellPhoneDB analysis outputs and result as a list of the outputs in the R session
 #'
 #' @returns For arguments from counts_data to output_suffix, please refer to https://github.com/ventolab/CellphoneDB/blob/master/notebooks/T1_Method2.ipynb
 #'
@@ -46,34 +46,38 @@
 #'   result_precision = 5,
 #'   score_interactions = TRUE)
 #' }
-run_cellphonedb <- function(obj, labels, group.by = NULL, toKeep = NULL, use_dir = NULL, ...,
+
+run_cellphonedb <- function(obj = NULL, labels = NULL, group.by = NULL, toKeep = NULL, use_dir = NULL, ...,
                                 counts_data = "hgnc_symbol", active_tfs_file_path = NULL, microenvs_file_path = NULL,
                                 score_interactions = FALSE, threshold = 0.1, pvalue = 0.05, subsampling = FALSE,
                                 subsampling_log = FALSE, separator = "|", debug = FALSE, output_suffix = NULL) {
+
+  if (is.null(obj) || is.null(labels)) {
+      stop("obj and labels cannot be NULL. Please input a Seurat object (obj) and a metadata column name (labels).")
+    }
 
   cpdbPath <- file.path(pacman::p_path("CCCtools"), "data/cellphonedb.zip")
 
   # Use use_dir if provided, else use tempdir with deparse
   if (!is.null(use_dir)) {
+    message("use_dir is not NULL. Using user-input directory for file creation and storage.")
     prefix <- use_dir
   } else {
+    message("use_dir is NULL. Creating temp directory for file creation and storage.")
     prefix <- file.path(tempdir(), deparse(substitute(obj)))
   }
   dir.create(prefix %>% normalizePath(winslash = "/"), recursive = TRUE)
 
-  cat("Creating input and output files to temp directory:", prefix, "\n",
-      "Note: Make a copy of the temp directory for future use if necessary. \n")
+  cat("Creating input and output files to directory:", prefix, "\n",
+      "Note: Make a copy of the temp directory (if applicable) for future use if necessary. \n")
 
   ## Convert arguments to integers for CellPhoneDB python function
   dots <- list(...)
-
   to_integer <- c("iterations", "threads", "debug_seed", "result_precision", "subsampling_num_pc", "subsampling_num_cells")
 
-  for(i in to_integer) {
-    if (!is.null(dots[[i]])) {
-      dots[[i]] <- as.integer(dots[[i]])
-    }
-  }
+  args <- intersect(names(dots), to_integer)
+
+  dots[args] <- lapply(dots[args], as.integer)
 
   ## Load required modules
   ad <- import("anndata")

@@ -10,7 +10,7 @@
 The goal of CCCtools is to provide functions to run [CellChat
 v2](https://github.com/jinworks/CellChat) and [CellPhoneDB
 v5](https://github.com/ventolab/CellphoneDB/tree/master) as well as
-compare their outputs. Gokce was here!
+compare their outputs. Gokce was here to check username chnage!
 
 ## Installation
 
@@ -41,6 +41,13 @@ Now, you are ready to install the development version of CCCtools:
 if (!requireNamespace("pacman", quietly = TRUE)) install.packages("pacman")
 pacman::p_load_gh("nigelhojinker/CCCtools")
 ```
+
+## CellPhoneDB-to-CellChatDB Mapping
+
+Users may view this
+[webpage](https://cellphonedb-cellchatdb-mapping.vercel.app/) for full
+details on the mapping process used to map interactions across both
+databases.
 
 ## Example data
 

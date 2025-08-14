@@ -49,6 +49,9 @@ if (!requireNamespace("pacman", quietly = TRUE)) install.packages("pacman")
 pacman::p_load_gh("nigelhojinker/CCCtools")
 ```
 
+## CellPhoneDB-to-CellChatDB Mapping
+
+Users may view this [webpage](https://cellphonedb-cellchatdb-mapping.vercel.app/) for full details on the mapping process used to map interactions across both databases.
 
 ## Example data
 
